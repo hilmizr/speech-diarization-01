@@ -1,0 +1,13 @@
+altair
+pandas
+streamlit
+openai-whisper
+torch
+torchaudio
+openai
+pyannote.audio
+langchain
+langchain-openai
+langchain-community
+markdown-pdf
+ffmpeg
