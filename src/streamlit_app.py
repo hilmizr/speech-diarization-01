@@ -18,13 +18,20 @@ import uuid
 # Fix permissions
 os.environ["STREAMLIT_HOME"] = "/tmp"
 os.environ["MPLCONFIGDIR"] = "/tmp"
+os.environ["STREAMLIT_WATCHER_TYPE"] = "none"
+
 
 # Fix asyncio loop on Spaces
 try:
-    asyncio.get_running_loop()
+    loop = asyncio.get_running_loop()
 except RuntimeError:
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
+
+if loop.is_closed():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
 
 # --- API Keys from Environment ---
 HUGGINGFACE_HUB_TOKEN = os.getenv("HUGGINGFACE_HUB_TOKEN", "")
